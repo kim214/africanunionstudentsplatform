@@ -1,9 +1,8 @@
+import { Link } from "react-router-dom";
 import logo from "@/assets/ausp-logo.png";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
-  const scrollTo = (id: string) =>
-    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -34,18 +33,18 @@ const HeroSection = () => {
           A Pan-African platform unifying students across the continent and the Diaspora to collaborate, innovate, and drive Africa's transformation.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
-          <button
-            onClick={() => scrollTo("#about")}
+          <Link
+            to="/about"
             className="px-8 py-4 rounded-xl bg-gold-gradient text-foreground font-semibold text-lg shadow-gold hover:opacity-90 transition-all hover:scale-105"
           >
             Discover AUSP
-          </button>
-          <button
-            onClick={() => scrollTo("#programs")}
+          </Link>
+          <Link
+            to="/programs"
             className="px-8 py-4 rounded-xl border-2 border-primary-foreground/30 text-primary-foreground font-semibold text-lg hover:bg-primary-foreground/10 transition-all hover:scale-105"
           >
             Our Programs
-          </button>
+          </Link>
         </div>
 
         {/* Stats bar */}
@@ -65,14 +64,14 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll indicator */}
-      <button
-        onClick={() => scrollTo("#about")}
+      <Link
+        to="/about"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-primary-foreground/50 animate-bounce"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
-      </button>
+      </Link>
     </section>
   );
 };
