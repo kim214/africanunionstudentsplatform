@@ -1,7 +1,13 @@
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import { useEffect, useRef, useState } from "react";
-import { Handshake, GraduationCap, PenTool, Scale, Settings, Landmark, Globe, UserPlus, Target, BookOpen, Building, DollarSign, Languages, MapPin, Flag } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Handshake, GraduationCap, PenTool, Scale, Settings, Landmark, Globe, UserPlus, Target, BookOpen, Building, DollarSign, Languages, MapPin, Flag, ArrowRight } from "lucide-react";
+
+import globalAffairsImg from "@/assets/ministry-global-affairs.jpg";
+import financeImg from "@/assets/ministry-finance.jpg";
+import projectsImg from "@/assets/ministry-projects.jpg";
+import languagesImg from "@/assets/ministry-languages.jpg";
 
 const useVisible = (threshold = 0.1) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -29,24 +35,28 @@ const departments = [
 
 const ministries = [
   {
-    icon: Globe, name: "Ministry of Global Affairs", progress: 70,
+    icon: Globe, name: "Ministry of Global Affairs", slug: "global-affairs", image: globalAffairsImg, progress: 70,
     objective: "To strengthen AUSP's connections with the African Diaspora and global partners.",
     programs: ["AUSP Diaspora Establishment Project", "Diaspora Forum Planning and Kick-off"],
+    departments: ["Diaspora Department", "Partnerships Department"],
   },
   {
-    icon: DollarSign, name: "Ministry of Finance & Governance", progress: 65,
+    icon: DollarSign, name: "Ministry of Finance & Governance", slug: "finance-governance", image: financeImg, progress: 65,
     objective: "To ensure the financial sustainability, accountability, and effective resource management.",
     programs: ["Budget 2025 Finalization", "Fundraising Drive"],
+    departments: ["Legal Department", "Operations Department"],
   },
   {
-    icon: Building, name: "Ministry of Projects & Programs", progress: 85,
+    icon: Building, name: "Ministry of Projects & Programs", slug: "projects-programs", image: projectsImg, progress: 85,
     objective: "To oversee the planning, coordination, and successful execution of flagship projects.",
     programs: ["African Union House (AUH) 2063 Launch", "TEDxAUSP Preparation"],
+    departments: ["Scholarships Department", "Editorial Department", "Membership Department"],
   },
   {
-    icon: Languages, name: "Ministry of Languages & Cultures", progress: 50,
+    icon: Languages, name: "Ministry of Languages & Cultures", slug: "languages-cultures", image: languagesImg, progress: 50,
     objective: "To promote linguistic diversity, cultural awareness, and Pan-African identity.",
     programs: ["Swahili for All Campaign", "French Connect Class"],
+    departments: ["History Department", "Agenda 2063 & 2030 Unit", "ECOSOC Unit"],
   },
 ];
 
@@ -109,33 +119,63 @@ const ProgramsPage = () => {
               Ministerial <span className="text-gradient-gold">Programs</span>
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {ministries.map((m, i) => (
-              <div key={m.name} className={`p-6 rounded-2xl bg-primary-foreground/5 backdrop-blur-sm border border-primary-foreground/10 hover:bg-primary-foreground/10 transition-all ${mins.visible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: `${0.12 * i}s` }}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gold-gradient flex items-center justify-center shrink-0">
-                    <m.icon className="w-6 h-6 text-foreground" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-display text-lg font-bold">{m.name}</h3>
-                    <div className="flex items-center gap-2 mt-1">
-                      <div className="flex-1 h-2 rounded-full bg-primary-foreground/10 overflow-hidden">
-                        <div className="h-full bg-gold-gradient rounded-full transition-all duration-1000" style={{ width: mins.visible ? `${m.progress}%` : "0%" }} />
+              <Link
+                key={m.name}
+                to={`/ministry/${m.slug}`}
+                className={`group relative overflow-hidden rounded-2xl border border-primary-foreground/10 hover:border-secondary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-gold ${mins.visible ? "animate-fade-in-up" : "opacity-0"}`}
+                style={{ animationDelay: `${0.12 * i}s` }}
+              >
+                {/* Image background */}
+                <div className="absolute inset-0">
+                  <img src={m.image} alt={m.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[hsl(215_55%_12%)] via-[hsl(215_55%_12%/0.85)] to-[hsl(215_55%_12%/0.6)]" />
+                </div>
+                {/* Content */}
+                <div className="relative p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-gold-gradient flex items-center justify-center shrink-0 shadow-gold group-hover:scale-110 transition-transform">
+                      <m.icon className="w-6 h-6 text-foreground" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-display text-lg font-bold text-primary-foreground">{m.name}</h3>
+                      <div className="flex items-center gap-2 mt-1">
+                        <div className="flex-1 h-2 rounded-full bg-primary-foreground/10 overflow-hidden">
+                          <div className="h-full bg-gold-gradient rounded-full transition-all duration-1000" style={{ width: mins.visible ? `${m.progress}%` : "0%" }} />
+                        </div>
+                        <span className="text-xs text-primary-foreground/60">{m.progress}%</span>
                       </div>
-                      <span className="text-xs text-primary-foreground/60">{m.progress}%</span>
                     </div>
                   </div>
+                  <p className="text-sm text-primary-foreground/70 mb-4">{m.objective}</p>
+                  {/* Programs */}
+                  <div className="mb-4">
+                    <h4 className="text-xs uppercase tracking-wider text-secondary font-semibold mb-2">Programs</h4>
+                    <ul className="space-y-1.5">
+                      {m.programs.map((p) => (
+                        <li key={p} className="flex items-start gap-2 text-sm text-primary-foreground/80">
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary shrink-0" />
+                          {p}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  {/* Departments */}
+                  <div className="mb-4">
+                    <h4 className="text-xs uppercase tracking-wider text-secondary/70 font-semibold mb-2">Departments</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {m.departments.map((d) => (
+                        <span key={d} className="px-3 py-1 rounded-full bg-primary-foreground/10 text-xs text-primary-foreground/70">{d}</span>
+                      ))}
+                    </div>
+                  </div>
+                  {/* CTA */}
+                  <div className="flex items-center gap-2 text-secondary text-sm font-semibold group-hover:gap-3 transition-all">
+                    View Ministry Details <ArrowRight className="w-4 h-4" />
+                  </div>
                 </div>
-                <p className="text-sm text-primary-foreground/70 mb-3">{m.objective}</p>
-                <ul className="space-y-1.5">
-                  {m.programs.map((p) => (
-                    <li key={p} className="flex items-start gap-2 text-sm text-primary-foreground/80">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary shrink-0" />
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
