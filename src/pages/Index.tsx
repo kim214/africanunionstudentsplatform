@@ -195,18 +195,21 @@ const Index = () => {
               Our <span className="text-gradient-gold">Leadership</span>
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
+          <div className="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto mb-16">
             {[
               { name: "H.E. Preston Simbeya", role: "Founding President", image: leaderPreston },
               { name: "Ms. Hajara Yakub", role: "Executive Secretary", image: leaderHajara },
               { name: "Hon. Neema Godfrey", role: "Prime Minister", image: leaderNeema },
             ].map((leader, i) => (
-              <div key={leader.name} className={`text-center bg-card rounded-2xl p-8 shadow-card border border-border hover:border-primary/30 transition-all hover:-translate-y-2 ${cta.visible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: `${0.12 * i}s` }}>
-                <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-4 border-primary/20 shadow-lg">
-                  <img src={leader.image} alt={leader.name} className="w-full h-full object-cover object-top" />
+              <div key={leader.name} className={`group text-center ${cta.visible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: `${0.15 * i}s` }}>
+                <div className="relative mx-auto mb-6 w-44 h-44 md:w-52 md:h-52">
+                  <div className="absolute inset-0 rounded-full bg-gold-gradient opacity-20 group-hover:opacity-40 blur-xl transition-opacity" />
+                  <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary/40 shadow-xl transition-all duration-300 group-hover:scale-105">
+                    <img src={leader.image} alt={leader.name} className="w-full h-full object-cover object-top" />
+                  </div>
                 </div>
-                <h3 className="font-display text-lg font-bold text-foreground">{leader.name}</h3>
-                <p className="text-sm text-muted-foreground mt-1">{leader.role}</p>
+                <h3 className="font-display text-xl font-bold text-foreground">{leader.name}</h3>
+                <p className="text-sm text-muted-foreground mt-1 font-medium">{leader.role}</p>
               </div>
             ))}
           </div>
