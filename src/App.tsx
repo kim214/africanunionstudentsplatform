@@ -10,6 +10,7 @@ import FocusAreasPage from "./pages/FocusAreasPage";
 import ProgramsPage from "./pages/ProgramsPage";
 import TimelinePage from "./pages/TimelinePage";
 import ContactPage from "./pages/ContactPage";
+import MinistryDetailPage from "./pages/MinistryDetailPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/programs" element={<ProgramsPage />} />
           <Route path="/timeline" element={<TimelinePage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/ministry/:slug" element={<MinistryDetailPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
