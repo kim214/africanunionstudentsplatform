@@ -1,6 +1,7 @@
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import FocusAreasSection from "@/components/FocusAreasSection";
+import { ROUTES } from "@/content/routes";
 
 const FocusAreasPage = () => (
   <PageLayout>
@@ -10,7 +11,7 @@ const FocusAreasPage = () => (
       highlight="Focus Areas"
       description="AUSP's work is organized around four strategic pillars driving youth empowerment and continental development."
       ctaLabel="Explore Programs"
-      ctaTo="/programs"
+      ctaTo={ROUTES.whatWeDo.programs}
     />
     <FocusAreasSection />
   </PageLayout>

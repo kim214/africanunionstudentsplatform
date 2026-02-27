@@ -4,6 +4,7 @@ import { MapPin, Calendar, ArrowRight, ChevronLeft, ChevronRight } from "lucide-
 import conferenceBg from "@/assets/conference-nairobi.jpg";
 import leadershipBg from "@/assets/hero-leadership.jpg";
 import unityBg from "@/assets/hero-unity.jpg";
+import { ROUTES } from "@/content/routes";
 
 const slides = [
   {
@@ -18,9 +19,9 @@ const slides = [
       { icon: MapPin, text: "Nairobi, Kenya" },
     ],
     ctaLabel: "Register Interest",
-    ctaTo: "/contact",
+    ctaTo: ROUTES.join,
     secondaryLabel: "Learn More",
-    secondaryTo: "/programs",
+    secondaryTo: ROUTES.whatWeDo.programs,
   },
   {
     id: "educate",
@@ -31,9 +32,9 @@ const slides = [
     description: "A Pan-African platform unifying students across the continent and the Diaspora to collaborate, innovate, and drive Africa's transformation.",
     meta: [],
     ctaLabel: "Discover AUSP",
-    ctaTo: "/about",
+    ctaTo: ROUTES.whoWeAre.about,
     secondaryLabel: "Our Programs",
-    secondaryTo: "/programs",
+    secondaryTo: ROUTES.whatWeDo.programs,
   },
   {
     id: "unity",
@@ -44,9 +45,9 @@ const slides = [
     description: "Nurturing a generation of transformative leaders who will shape the world through education, critical thinking, and creativity across 55+ nations.",
     meta: [],
     ctaLabel: "View Our Mission",
-    ctaTo: "/mission",
+    ctaTo: ROUTES.whoWeAre.mission,
     secondaryLabel: "Focus Areas",
-    secondaryTo: "/focus-areas",
+    secondaryTo: ROUTES.whatWeDo.focusAreas,
   },
 ];
 
@@ -74,7 +75,10 @@ const HeroSection = () => {
   const slide = slides[current];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen pt-[140px] pb-24 overflow-hidden"
+    >
       {/* Backgrounds */}
       {slides.map((s, i) => (
         <div
@@ -92,7 +96,11 @@ const HeroSection = () => {
       <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-ausp-blue-light/10 blur-3xl animate-float" style={{ animationDelay: "1.5s" }} />
 
       {/* Content */}
-      <div className={`relative z-10 container mx-auto px-4 text-center transition-all duration-400 ${isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}>
+      <div
+        className={`relative z-10 container mx-auto px-4 text-center transition-all duration-400 ${
+          isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
+        }`}
+      >
         <span className="inline-block px-4 py-1.5 rounded-full bg-primary-foreground/10 text-primary-foreground/90 text-sm font-semibold mb-6 animate-fade-in-up backdrop-blur-sm border border-primary-foreground/10">
           {slide.badge}
         </span>

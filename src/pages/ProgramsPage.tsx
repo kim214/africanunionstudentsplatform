@@ -3,6 +3,7 @@ import PageHero from "@/components/PageHero";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Handshake, GraduationCap, PenTool, Scale, Settings, Landmark, Globe, UserPlus, Target, BookOpen, Building, DollarSign, Languages, MapPin, Flag, ArrowRight } from "lucide-react";
+import { ROUTES } from "@/content/routes";
 
 import globalAffairsImg from "@/assets/ministry-global-affairs.jpg";
 import financeImg from "@/assets/ministry-finance.jpg";
@@ -73,7 +74,7 @@ const ProgramsPage = () => {
         highlight="Programs"
         description="Initiatives organized across departments, ministries, and regions—each leading targeted programs to promote leadership, entrepreneurship, and knowledge development."
         ctaLabel="View Timeline"
-        ctaTo="/timeline"
+        ctaTo={ROUTES.whoWeAre.timeline}
       />
 
       {/* Overview */}

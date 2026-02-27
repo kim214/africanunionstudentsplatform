@@ -1,16 +1,8 @@
 import logo from "@/assets/ausp-logo.png";
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
-
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Mission", href: "/mission" },
-  { label: "Focus Areas", href: "/focus-areas" },
-  { label: "Programs", href: "/programs" },
-  { label: "Timeline", href: "/timeline" },
-  { label: "Contact", href: "/contact" },
-];
+import { SITE } from "@/content/site";
+import { ROUTES } from "@/content/routes";
 
 const FooterSection = () => (
   <footer className="bg-hero-gradient text-primary-foreground">
@@ -18,11 +10,11 @@ const FooterSection = () => (
       <div className="grid md:grid-cols-4 gap-12">
         {/* Brand */}
         <div>
-          <Link to="/" className="flex items-center gap-3 mb-6">
+          <Link to={ROUTES.home} className="flex items-center gap-3 mb-6">
             <img src={logo} alt="AUSP" className="w-14 h-14 rounded-full" />
             <div>
-              <h3 className="font-display text-xl font-bold">AUSP</h3>
-              <p className="text-sm text-primary-foreground/60">Educate • Connect • Empower</p>
+              <h3 className="font-display text-xl font-bold">{SITE.shortName}</h3>
+              <p className="text-sm text-primary-foreground/60">{SITE.tagline}</p>
             </div>
           </Link>
           <p className="text-sm text-primary-foreground/60 leading-relaxed">
@@ -34,10 +26,12 @@ const FooterSection = () => (
         <div>
           <h4 className="font-display text-lg font-bold mb-6">Quick Links</h4>
           <div className="flex flex-col gap-2">
-            {navLinks.map((link) => (
+            {SITE.nav
+              .flatMap((item) => ("children" in item ? item.children : [item]))
+              .map((link) => (
               <Link
-                key={link.href}
-                to={link.href}
+                key={link.to}
+                to={link.to}
                 className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors py-1"
               >
                 {link.label}
@@ -50,29 +44,37 @@ const FooterSection = () => (
         <div>
           <h4 className="font-display text-lg font-bold mb-6">Contact Us</h4>
           <div className="flex flex-col gap-4">
-            <a href="mailto:info@ausp.org" className="flex items-center gap-3 text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
-              <Mail className="w-4 h-4 text-secondary" /> info@ausp.org
+            <a href={`mailto:${SITE.email}`} className="flex items-center gap-3 text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
+              <Mail className="w-4 h-4 text-secondary" /> {SITE.email}
             </a>
-            <a href="tel:+254000000000" className="flex items-center gap-3 text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
-              <Phone className="w-4 h-4 text-secondary" /> +254 000 000 000
+            <a href={`tel:${SITE.phone.replace(/\s+/g, "")}`} className="flex items-center gap-3 text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
+              <Phone className="w-4 h-4 text-secondary" /> {SITE.phone}
             </a>
             <span className="flex items-center gap-3 text-sm text-primary-foreground/60">
-              <MapPin className="w-4 h-4 text-secondary" /> Nairobi, Kenya
+              <MapPin className="w-4 h-4 text-secondary" /> {SITE.location}
             </span>
           </div>
           <div className="flex items-center gap-4 mt-6">
-            <a href="#" className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
-              <Facebook className="w-4 h-4" />
-            </a>
-            <a href="#" className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
-              <Twitter className="w-4 h-4" />
-            </a>
-            <a href="#" className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
-              <Linkedin className="w-4 h-4" />
-            </a>
-            <a href="#" className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
-              <Instagram className="w-4 h-4" />
-            </a>
+            {SITE.social.facebook && (
+              <a href={SITE.social.facebook} target="_blank" rel="noreferrer" aria-label="Facebook" className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
+                <Facebook className="w-4 h-4" />
+              </a>
+            )}
+            {SITE.social.twitter && (
+              <a href={SITE.social.twitter} target="_blank" rel="noreferrer" aria-label="Twitter" className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
+                <Twitter className="w-4 h-4" />
+              </a>
+            )}
+            {SITE.social.linkedin && (
+              <a href={SITE.social.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
+                <Linkedin className="w-4 h-4" />
+              </a>
+            )}
+            {SITE.social.instagram && (
+              <a href={SITE.social.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
+                <Instagram className="w-4 h-4" />
+              </a>
+            )}
           </div>
         </div>
 
@@ -82,9 +84,14 @@ const FooterSection = () => (
           <p className="text-sm text-primary-foreground/60 mb-4">
             Ready to join the movement? Connect with AUSP and be part of Africa's transformation.
           </p>
-          <Link to="/contact" className="inline-block px-6 py-3 rounded-lg bg-gold-gradient text-foreground font-semibold text-sm shadow-gold hover:opacity-90 transition-opacity">
-            Join AUSP Today
-          </Link>
+          <div className="flex flex-col gap-3">
+            <Link to={ROUTES.join} className="inline-block px-6 py-3 rounded-lg bg-gold-gradient text-foreground font-semibold text-sm shadow-gold hover:opacity-90 transition-opacity text-center">
+              Join AUSP Today
+            </Link>
+            <Link to={ROUTES.donate} className="inline-block px-6 py-3 rounded-lg border border-primary-foreground/20 text-primary-foreground font-semibold text-sm hover:bg-primary-foreground/10 transition-colors text-center">
+              Donate Now
+            </Link>
+          </div>
         </div>
       </div>
 

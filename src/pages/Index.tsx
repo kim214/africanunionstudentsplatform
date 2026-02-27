@@ -4,23 +4,23 @@ import { Link } from "react-router-dom";
 import leaderPreston from "@/assets/leader-preston.png";
 import leaderHajara from "@/assets/leader-hajara.png";
 import leaderNeema from "@/assets/leader-neema.png";
-import campaign1 from "@/assets/campaign-1.jpg";
-import campaign2 from "@/assets/campaign-2.jpg";
-import campaign3 from "@/assets/campaign-3.jpg";
-import campaign4 from "@/assets/campaign-4.jpg";
-import campaign5 from "@/assets/campaign-5.jpg";
-import campaign6 from "@/assets/campaign-6.jpg";
 import missionHero from "@/assets/mission-hero.jpg";
 import conferenceBg from "@/assets/conference-nairobi.jpg";
-import ministryGlobalAffairs from "@/assets/ministry-global-affairs.jpg";
-import ministryFinance from "@/assets/ministry-finance.jpg";
-import ministryProjects from "@/assets/ministry-projects.jpg";
 import { useEffect, useRef, useState } from "react";
 import {
   BookOpen, Users, Lightbulb, Award, Crown, Rocket, GraduationCap, Heart,
-  ArrowRight, Globe, Shield, Sparkles, Star, Target, Handshake,
+  ArrowRight, Globe, Star, Target,
   MapPin, Calendar, Quote, ChevronLeft, ChevronRight
 } from "lucide-react";
+import {
+  homeCampaigns,
+  homePillars,
+  homeTestimonials,
+  homeUpcomingEvents,
+  homeValues,
+} from "@/content/homeContent";
+import { ROUTES } from "@/content/routes";
+import { useNewsList } from "@/api/news";
 
 const useVisible = (threshold = 0.15) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -33,113 +33,11 @@ const useVisible = (threshold = 0.15) => {
   return { ref, visible };
 };
 
-const pillars = [
-  {
-    icon: BookOpen,
-    image: ministryGlobalAffairs,
-    title: "Policy & Advocacy",
-    description: "AUSP facilitates the collective participation and engagement of young people in official, formal and informal avenues of policy design, implementation, monitoring, and review at continental and global levels.",
-    link: "/focus-areas",
-  },
-  {
-    icon: Users,
-    image: ministryFinance,
-    title: "Movement Building",
-    description: "AUSP consolidates student voices through grassroots organisation linkages to build a strong youth movement on the continent through national consortium platforms across 55+ nations.",
-    link: "/programs",
-  },
-  {
-    icon: Lightbulb,
-    image: ministryProjects,
-    title: "Youth Engagement",
-    description: "Impactful youth engagement recognises and seeks to change the power structures that prevent young people from being considered as key stakeholders and drivers of their own needs and priorities.",
-    link: "/mission",
-  },
-];
-
 const focusAreas = [
   { icon: Crown, title: "Leadership & Governance", description: "Building visionary and responsible leaders equipped with governance skills." },
   { icon: Rocket, title: "Entrepreneurship & Innovation", description: "Promoting youth entrepreneurship and fostering global partnerships." },
   { icon: GraduationCap, title: "Education & Skills", description: "Strengthening academic and professional capacity through learning programs." },
   { icon: Heart, title: "Cultural Empowerment", description: "Promoting African identity, unity, and cultural pride among youth." },
-];
-
-const values = [
-  { icon: Globe, title: "Unity in Diversity", description: "Embracing Africa's cultural richness, promoting solidarity and shared purpose." },
-  { icon: Shield, title: "Integrity", description: "Upholding honesty, transparency, and responsibility in all actions." },
-  { icon: Sparkles, title: "Innovation", description: "Encouraging bold thinking to transform ideas into real solutions." },
-  { icon: Star, title: "Leadership & Service", description: "Nurturing visionary leaders who serve with humility and inspire action." },
-  { icon: Target, title: "Professionalism", description: "Committing to excellence and discipline, ensuring high standards." },
-  { icon: Handshake, title: "Pan-Africanism", description: "Collective responsibility in advancing Africa's development and Agenda 2063." },
-];
-
-const campaigns = [
-  { image: campaign1, title: "Pan-African Youth Conference" },
-  { image: campaign2, title: "Leadership Workshop Series" },
-  { image: campaign3, title: "Advocacy & Policy Forum" },
-  { image: campaign4, title: "Cultural Heritage Festival" },
-  { image: campaign5, title: "Community Outreach Program" },
-  { image: campaign6, title: "Innovation & Tech Hub" },
-];
-
-const testimonials = [
-  {
-    quote: "AUSP has been instrumental in connecting young African leaders across borders. The platform has given us a voice at the continental level and the tools to drive real change in our communities.",
-    name: "Amina Diallo",
-    role: "Student Leader, Senegal",
-  },
-  {
-    quote: "Through AUSP's mentorship programs, I was able to develop my leadership skills and connect with like-minded youth from across the continent. It's truly a transformative experience.",
-    name: "David Okello",
-    role: "Youth Advocate, Uganda",
-  },
-  {
-    quote: "The International Pan-African Youth Conference was a life-changing experience. Meeting thousands of passionate young Africans reaffirmed my belief in Africa's bright future.",
-    name: "Fatima Zara",
-    role: "Entrepreneur, Nigeria",
-  },
-];
-
-const upcomingEvents = [
-  {
-    date: { day: "15", month: "Oct" },
-    title: "International Pan-African Youth Conference 2026",
-    description: "Join thousands of young African leaders, innovators, and changemakers for the most anticipated Pan-African youth gathering of the year in Nairobi, Kenya.",
-    location: "Nairobi, Kenya",
-  },
-  {
-    date: { day: "20", month: "Jun" },
-    title: "AUSP Leadership Summit 2026",
-    description: "A continental summit bringing together AUSP chapters from across 55+ nations to discuss strategy, share best practices, and plan for the future.",
-    location: "Addis Ababa, Ethiopia",
-  },
-  {
-    date: { day: "05", month: "Mar" },
-    title: "Youth Innovation Challenge 2026",
-    description: "An innovation challenge inviting young Africans to develop solutions addressing Africa's most pressing challenges through technology and creativity.",
-    location: "Virtual",
-  },
-];
-
-const newsItems = [
-  {
-    image: campaign1,
-    date: { day: "15", month: "Feb" },
-    title: "AUSP Launches New Chapter in 5 Additional Countries",
-    excerpt: "The African Union Students' Platform continues to expand its reach across the continent, with new chapters established in Mozambique, Madagascar, Cameroon, Senegal, and Morocco.",
-  },
-  {
-    image: campaign3,
-    date: { day: "28", month: "Jan" },
-    title: "AUSP Delegation Attends AU Summit in Addis Ababa",
-    excerpt: "A delegation of AUSP leaders participated in the African Union Summit, advocating for greater youth inclusion in continental policy-making processes.",
-  },
-  {
-    image: campaign6,
-    date: { day: "10", month: "Dec" },
-    title: "Innovation Hub Partners with Leading African Universities",
-    excerpt: "AUSP's Innovation Hub has secured partnerships with 12 leading African universities to create a continent-wide network for student entrepreneurs and innovators.",
-  },
 ];
 
 const Index = () => {
@@ -155,6 +53,7 @@ const Index = () => {
   const testimonialSection = useVisible();
   const newsSection = useVisible();
   const leaderSection = useVisible();
+  const { data: newsFromDb } = useNewsList();
   const [testimonialIdx, setTestimonialIdx] = useState(0);
 
   return (
@@ -183,7 +82,7 @@ const Index = () => {
       <section className="py-20 bg-muted/50" ref={pillarSection.ref}>
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {pillars.map((p, i) => (
+            {homePillars.map((p, i) => (
               <Link
                 key={p.title}
                 to={p.link}
@@ -292,7 +191,7 @@ const Index = () => {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link to="/focus-areas" className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
+            <Link to={ROUTES.whatWeDo.focusAreas} className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
               Explore all focus areas <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -311,7 +210,7 @@ const Index = () => {
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
-            {campaigns.map((c, i) => (
+            {homeCampaigns.map((c, i) => (
               <div
                 key={c.title}
                 className={`group relative overflow-hidden rounded-xl aspect-[4/3] ${campaignSection.visible ? "animate-fade-in-up" : "opacity-0"}`}
@@ -340,10 +239,10 @@ const Index = () => {
             At National Level, we organise our engagement through National Consortium structures where all member organisations come together to implement locally led actions.
           </p>
           <div className={`flex flex-col sm:flex-row gap-4 justify-center ${joinSection.visible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: "0.2s" }}>
-            <Link to="/contact" className="px-8 py-4 rounded-xl bg-gold-gradient text-foreground font-semibold text-lg shadow-gold hover:opacity-90 transition-all hover:scale-105 inline-flex items-center justify-center gap-2">
+            <Link to={ROUTES.join} className="px-8 py-4 rounded-xl bg-gold-gradient text-foreground font-semibold text-lg shadow-gold hover:opacity-90 transition-all hover:scale-105 inline-flex items-center justify-center gap-2">
               Join Now <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link to="/programs" className="px-8 py-4 rounded-xl border-2 border-primary-foreground/30 text-primary-foreground font-semibold text-lg hover:bg-primary-foreground/10 transition-all hover:scale-105">
+            <Link to={ROUTES.whatWeDo.programs} className="px-8 py-4 rounded-xl border-2 border-primary-foreground/30 text-primary-foreground font-semibold text-lg hover:bg-primary-foreground/10 transition-all hover:scale-105">
               Explore Programs
             </Link>
           </div>
@@ -359,7 +258,7 @@ const Index = () => {
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {upcomingEvents.map((ev, i) => (
+            {homeUpcomingEvents.map((ev, i) => (
               <div
                 key={ev.title}
                 className={`group bg-card rounded-2xl shadow-card border border-border hover:border-primary/30 overflow-hidden transition-all duration-300 hover:-translate-y-1 ${eventsSection.visible ? "animate-fade-in-up" : "opacity-0"}`}
@@ -400,7 +299,7 @@ const Index = () => {
               <p className="text-muted-foreground leading-relaxed">
                 AUSP subscribes to the ideals and Pan-African vision of the African Union — "An integrated, prosperous and peaceful Africa, driven by its own citizens and representing a dynamic force in the global arena." We nurture a generation of transformative leaders through education, critical thinking, and creativity.
               </p>
-              <Link to="/mission" className="inline-flex items-center gap-2 mt-6 text-primary font-semibold hover:gap-3 transition-all">
+              <Link to={ROUTES.whoWeAre.mission} className="inline-flex items-center gap-2 mt-6 text-primary font-semibold hover:gap-3 transition-all">
                 Read our full mission <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -420,19 +319,19 @@ const Index = () => {
             <div className={`bg-card rounded-2xl p-10 shadow-card border border-border text-center ${testimonialSection.visible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: "0.1s" }}>
               <Quote className="w-10 h-10 text-secondary/40 mx-auto mb-6" />
               <p className="text-muted-foreground leading-relaxed text-lg italic mb-8">
-                "{testimonials[testimonialIdx].quote}"
+                "{homeTestimonials[testimonialIdx].quote}"
               </p>
-              <h4 className="font-display text-lg font-bold text-foreground">{testimonials[testimonialIdx].name}</h4>
-              <p className="text-sm text-muted-foreground">{testimonials[testimonialIdx].role}</p>
+              <h4 className="font-display text-lg font-bold text-foreground">{homeTestimonials[testimonialIdx].name}</h4>
+              <p className="text-sm text-muted-foreground">{homeTestimonials[testimonialIdx].role}</p>
             </div>
             <div className="flex justify-center gap-3 mt-6">
               <button
-                onClick={() => setTestimonialIdx((testimonialIdx - 1 + testimonials.length) % testimonials.length)}
+                onClick={() => setTestimonialIdx((testimonialIdx - 1 + homeTestimonials.length) % homeTestimonials.length)}
                 className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:bg-accent transition-colors"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
-              {testimonials.map((_, i) => (
+              {homeTestimonials.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setTestimonialIdx(i)}
@@ -440,7 +339,7 @@ const Index = () => {
                 />
               ))}
               <button
-                onClick={() => setTestimonialIdx((testimonialIdx + 1) % testimonials.length)}
+                onClick={() => setTestimonialIdx((testimonialIdx + 1) % homeTestimonials.length)}
                 className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:bg-accent transition-colors"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -459,24 +358,30 @@ const Index = () => {
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {newsItems.map((news, i) => (
-              <div
-                key={news.title}
+            {(newsFromDb ?? []).slice(0, 3).map((news, i) => (
+              <Link
+                key={news.id}
+                to={`/news/${news.slug}`}
                 className={`group bg-card rounded-2xl shadow-card border border-border overflow-hidden hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 ${newsSection.visible ? "animate-fade-in-up" : "opacity-0"}`}
                 style={{ animationDelay: `${0.12 * i}s` }}
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img src={news.image} alt={news.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                  <div className="absolute top-4 left-4 bg-blue-gradient text-primary-foreground rounded-lg px-3 py-1.5 text-center shadow-lg">
-                    <div className="text-lg font-bold font-display leading-none">{news.date.day}</div>
-                    <div className="text-[10px] uppercase tracking-wider">{news.date.month}</div>
-                  </div>
+                  {news.image_url && (
+                    <img src={news.image_url} alt={news.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  )}
+                  {news.published_at && (
+                    <div className="absolute top-4 left-4 bg-blue-gradient text-primary-foreground rounded-lg px-3 py-1.5 text-center shadow-lg text-xs font-medium">
+                      {new Date(news.published_at).toLocaleDateString(undefined, { day: "2-digit", month: "short" })}
+                    </div>
+                  )}
                 </div>
                 <div className="p-6">
                   <h3 className="font-display text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors leading-tight">{news.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{news.excerpt}</p>
+                  {news.excerpt && (
+                    <p className="text-sm text-muted-foreground leading-relaxed">{news.excerpt}</p>
+                  )}
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -520,7 +425,7 @@ const Index = () => {
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {values.map((v, i) => (
+            {homeValues.map((v, i) => (
               <div key={v.title} className={`group text-center bg-card rounded-2xl p-8 shadow-card border border-border hover:border-primary/30 transition-all duration-300 hover:-translate-y-2 ${valuesSection.visible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: `${0.1 * i}s` }}>
                 <div className="w-14 h-14 rounded-xl bg-blue-gradient flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
                   <v.icon className="w-7 h-7 text-primary-foreground" />
@@ -543,10 +448,10 @@ const Index = () => {
             Join AUSP and become part of a growing community of young African leaders, innovators, and changemakers across 55+ nations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="px-8 py-4 rounded-xl bg-gold-gradient text-foreground font-semibold text-lg shadow-gold hover:opacity-90 transition-all hover:scale-105 inline-flex items-center justify-center gap-2">
+            <Link to={ROUTES.join} className="px-8 py-4 rounded-xl bg-gold-gradient text-foreground font-semibold text-lg shadow-gold hover:opacity-90 transition-all hover:scale-105 inline-flex items-center justify-center gap-2">
               Join AUSP Today <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link to="/programs" className="px-8 py-4 rounded-xl border-2 border-primary-foreground/30 text-primary-foreground font-semibold text-lg hover:bg-primary-foreground/10 transition-all hover:scale-105">
+            <Link to={ROUTES.whatWeDo.programs} className="px-8 py-4 rounded-xl border-2 border-primary-foreground/30 text-primary-foreground font-semibold text-lg hover:bg-primary-foreground/10 transition-all hover:scale-105">
               Explore Programs
             </Link>
           </div>

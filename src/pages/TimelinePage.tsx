@@ -2,6 +2,7 @@ import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import { useEffect, useRef, useState } from "react";
 import { Rocket, TrendingUp, BarChart3, Flag, CheckCircle, Target } from "lucide-react";
+import { ROUTES } from "@/content/routes";
 
 const useVisible = (threshold = 0.15) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -53,7 +54,7 @@ const TimelinePage = () => {
         highlight="2025–2026"
         description="Four operational phases guiding AUSP from implementation through growth to culmination, aligned with AU Agenda 2063 and UN Agenda 2030."
         ctaLabel="Get Involved"
-        ctaTo="/contact"
+        ctaTo={ROUTES.join}
       />
 
       {/* Operational Seasons */}

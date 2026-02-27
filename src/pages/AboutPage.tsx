@@ -2,6 +2,7 @@ import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import { useEffect, useRef, useState } from "react";
 import { Shield, Eye, Users, Globe, Sparkles, Star, Target, Handshake, CheckCircle } from "lucide-react";
+import { ROUTES } from "@/content/routes";
 
 const useVisible = (threshold = 0.15) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -44,7 +45,7 @@ const AboutPage = () => {
         highlight="Through Unity"
         description="A Pan-African, community-based organization established in 2020 to connect intellectual African students across the continent and the Diaspora."
         ctaLabel="View Our Mission"
-        ctaTo="/mission"
+        ctaTo={ROUTES.whoWeAre.mission}
       />
 
       {/* Story */}

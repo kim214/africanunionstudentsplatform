@@ -1,17 +1,27 @@
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import { useEffect, useRef, useState } from "react";
-import { Mail, MapPin, Globe, Send } from "lucide-react";
+import { Mail, MapPin, Globe, Send, MessageCircle, Instagram, Twitter, Linkedin } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { SITE } from "@/content/site";
+import { ROUTES } from "@/content/routes";
+import { useLocation } from "react-router-dom";
 
 const ContactPage = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const { toast } = useToast();
+  const location = useLocation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.15 });
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
+
+  const isJoin = location.pathname === ROUTES.join;
+  const whatsappNumber = SITE.phone.replace(/[^0-9]/g, "");
+  const whatsappHref = `https://wa.me/${whatsappNumber}`;
 
   return (
     <PageLayout>
@@ -52,6 +62,55 @@ const ContactPage = () => {
                 ))}
               </div>
 
+              {/* Social & WhatsApp */}
+              <div className="mt-10 space-y-4">
+                <h4 className="font-display text-lg font-bold text-foreground">Connect Online</h4>
+                <div className="flex flex-wrap items-center gap-3">
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 text-white text-sm font-semibold shadow-sm hover:bg-green-600 transition-colors"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    WhatsApp
+                  </a>
+                  {SITE.social.instagram && (
+                    <a
+                      href={SITE.social.instagram}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted text-xs text-foreground hover:bg-accent transition-colors"
+                    >
+                      <Instagram className="w-3 h-3" />
+                      Instagram
+                    </a>
+                  )}
+                  {SITE.social.twitter && (
+                    <a
+                      href={SITE.social.twitter}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted text-xs text-foreground hover:bg-accent transition-colors"
+                    >
+                      <Twitter className="w-3 h-3" />
+                      X (Twitter)
+                    </a>
+                  )}
+                  {SITE.social.linkedin && (
+                    <a
+                      href={SITE.social.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted text-xs text-foreground hover:bg-accent transition-colors"
+                    >
+                      <Linkedin className="w-3 h-3" />
+                      LinkedIn
+                    </a>
+                  )}
+                </div>
+              </div>
+
               {/* Requirements */}
               <div className="mt-10 bg-accent rounded-2xl p-6 border border-primary/10">
                 <h4 className="font-display text-lg font-bold text-foreground mb-3">Membership Requirements</h4>
@@ -66,22 +125,73 @@ const ContactPage = () => {
             {/* Contact Form */}
             <div className={`bg-card rounded-2xl p-8 shadow-card border border-border ${visible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: "0.2s" }}>
               <h3 className="font-display text-2xl font-bold text-foreground mb-6">Send a Message</h3>
-              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+              <form
+                className="space-y-5"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const form = e.currentTarget;
+                  const data = new FormData(form);
+                  const name = String(data.get("fullName") ?? "");
+                  const email = String(data.get("email") ?? "");
+                  const country = String(data.get("country") ?? "");
+                  const message = String(data.get("message") ?? "");
+
+                  const subject = isJoin ? "AUSP Membership / Joining" : `Message from AUSP website: ${name || "Visitor"}`;
+                  const body = [
+                    `Full Name: ${name}`,
+                    `Email: ${email}`,
+                    `Country: ${country}`,
+                    "",
+                    message,
+                  ].join("\n");
+
+                  const href = `mailto:${encodeURIComponent(SITE.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                  window.location.href = href;
+
+                  toast({
+                    title: "Opening your email client",
+                    description: `Your message will be sent to ${SITE.email}.`,
+                  });
+                }}
+              >
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1.5">Full Name</label>
-                  <input type="text" className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all" placeholder="Your full name" />
+                  <input
+                    name="fullName"
+                    type="text"
+                    required
+                    className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all"
+                    placeholder="Your full name"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1.5">Email</label>
-                  <input type="email" className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all" placeholder="your@email.com" />
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all"
+                    placeholder="your@email.com"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1.5">Country</label>
-                  <input type="text" className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all" placeholder="Your country" />
+                  <input
+                    name="country"
+                    type="text"
+                    className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all"
+                    placeholder="Your country"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1.5">Message</label>
-                  <textarea rows={4} className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all resize-none" placeholder="Tell us about yourself and your interest in AUSP..." />
+                  <textarea
+                    name="message"
+                    rows={4}
+                    required
+                    className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all resize-none"
+                    placeholder="Tell us about yourself and your interest in AUSP..."
+                  />
                 </div>
                 <button
                   type="submit"
