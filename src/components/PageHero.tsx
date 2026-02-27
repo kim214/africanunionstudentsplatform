@@ -11,7 +11,7 @@ interface PageHeroProps {
 }
 
 const PageHero = ({ badge, title, highlight, description, ctaLabel, ctaTo }: PageHeroProps) => (
-  <section className="relative pt-32 pb-20 bg-hero-gradient text-primary-foreground overflow-hidden">
+  <section className="relative pt-40 pb-20 bg-hero-gradient text-primary-foreground overflow-hidden">
     <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-ausp-gold/5 blur-3xl animate-float" />
     <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-ausp-blue-light/10 blur-3xl animate-float" style={{ animationDelay: "1.5s" }} />
     <div className="relative z-10 container mx-auto px-4 text-center">

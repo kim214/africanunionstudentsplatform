@@ -1,5 +1,6 @@
 import logo from "@/assets/ausp-logo.png";
 import { Link } from "react-router-dom";
+import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -14,7 +15,8 @@ const navLinks = [
 const FooterSection = () => (
   <footer className="bg-hero-gradient text-primary-foreground">
     <div className="container mx-auto px-4 py-16">
-      <div className="grid md:grid-cols-3 gap-12">
+      <div className="grid md:grid-cols-4 gap-12">
+        {/* Brand */}
         <div>
           <Link to="/" className="flex items-center gap-3 mb-6">
             <img src={logo} alt="AUSP" className="w-14 h-14 rounded-full" />
@@ -28,9 +30,10 @@ const FooterSection = () => (
           </p>
         </div>
 
+        {/* Quick Links */}
         <div>
           <h4 className="font-display text-lg font-bold mb-6">Quick Links</h4>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="flex flex-col gap-2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -43,6 +46,37 @@ const FooterSection = () => (
           </div>
         </div>
 
+        {/* Contact Info */}
+        <div>
+          <h4 className="font-display text-lg font-bold mb-6">Contact Us</h4>
+          <div className="flex flex-col gap-4">
+            <a href="mailto:info@ausp.org" className="flex items-center gap-3 text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
+              <Mail className="w-4 h-4 text-secondary" /> info@ausp.org
+            </a>
+            <a href="tel:+254000000000" className="flex items-center gap-3 text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
+              <Phone className="w-4 h-4 text-secondary" /> +254 000 000 000
+            </a>
+            <span className="flex items-center gap-3 text-sm text-primary-foreground/60">
+              <MapPin className="w-4 h-4 text-secondary" /> Nairobi, Kenya
+            </span>
+          </div>
+          <div className="flex items-center gap-4 mt-6">
+            <a href="#" className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
+              <Facebook className="w-4 h-4" />
+            </a>
+            <a href="#" className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
+              <Twitter className="w-4 h-4" />
+            </a>
+            <a href="#" className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
+              <Linkedin className="w-4 h-4" />
+            </a>
+            <a href="#" className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
+              <Instagram className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+
+        {/* Get Involved */}
         <div>
           <h4 className="font-display text-lg font-bold mb-6">Get Involved</h4>
           <p className="text-sm text-primary-foreground/60 mb-4">
