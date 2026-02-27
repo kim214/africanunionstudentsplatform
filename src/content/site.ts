@@ -5,13 +5,13 @@ export const SITE = {
   shortName: "AUSP",
   tagline: "Educate • Connect • Empower",
   email: "info@ausp.org",
-  phone: "+254 000 000 000",
+  phone: "+260 97 3313044,",
   location: "Nairobi, Kenya",
   social: {
     facebook: "https://www.facebook.com/ausp.africa",
     twitter: "https://twitter.com/ausp_africa",
-    linkedin: "https://www.linkedin.com/company/african-union-students-platform",
-    instagram: "https://www.instagram.com/ausp.africa",
+    linkedin: "https://www.linkedin.com/company/african-university-student-platform/",
+    instagram: "https://www.instagram.com/ausp_intl/",
   },
   nav: [
     { label: "Home", to: ROUTES.home },

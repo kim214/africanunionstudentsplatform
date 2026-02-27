@@ -60,6 +60,31 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## Environment variables 🔐
+
+This project uses [Vite](https://vitejs.dev/) and reads configuration from
+`import.meta.env`. For any secrets or API keys you should create a local
+`.env` file at the root of the repository. The repository includes a
+`.env.example` with the required keys – copy it to `.env` and fill in the
+values.
+
+```bash
+cp .env.example .env        # macOS / Linux
+copy .env.example .env      # Windows PowerShell
+```
+
+For Supabase you must provide:
+
+```env
+VITE_SUPABASE_URL=https://your-project-ref.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
+```
+
+The real `.env` file is ignored by Git, so you can keep your credentials
+private. Other environment files like `.env.local` or `.env.production`
+are also supported by Vite if you need different values per environment.
+
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.

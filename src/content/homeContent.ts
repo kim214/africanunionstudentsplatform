@@ -11,15 +11,15 @@ import {
 } from "lucide-react";
 
 import campaign1 from "@/assets/campaign-1.jpg";
-import campaign2 from "@/assets/campaign-2.jpg";
+import campaign2 from "@/assets/campaign-2.png";
 import campaign3 from "@/assets/campaign-3.jpg";
 import campaign4 from "@/assets/campaign-4.jpg";
 import campaign5 from "@/assets/campaign-5.jpg";
 import campaign6 from "@/assets/campaign-6.jpg";
 
-import ministryGlobalAffairs from "@/assets/ministry-global-affairs.jpg";
+import ministryGlobalAffairs from "@/assets/policy.png";
 import ministryFinance from "@/assets/ministry-finance.jpg";
-import ministryProjects from "@/assets/ministry-projects.jpg";
+import ministryProjects from "@/assets/youthengagement.png";
 import { ROUTES } from "@/content/routes";
 
 export const homePillars = [
