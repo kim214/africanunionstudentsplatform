@@ -4,7 +4,7 @@ export const SITE = {
   name: "African Union Students' Platform",
   shortName: "AUSP",
   tagline: "Educate • Connect • Empower",
-  email: "info@ausp.org",
+  email: "info@ausp.africa",
   phone: "+260 97 3313044,",
   location: "Nairobi, Kenya",
   social: {
