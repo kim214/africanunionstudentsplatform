@@ -5,7 +5,7 @@ export const SITE = {
   shortName: "AUSP",
   tagline: "Educate • Connect • Empower",
   email: "info@ausp.africa",
-  phone: "+260 97 3313044,",
+  phone: "+255 760 693 306",
   location: "Nairobi, Kenya",
   social: {
     facebook: "https://www.facebook.com/ausp.africa",

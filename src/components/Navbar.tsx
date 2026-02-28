@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "@/assets/ausp-logo.png";
+import logo from "@/assets/logo.png";
 import { Mail, Phone, Facebook, Twitter, Linkedin, Instagram, Menu } from "lucide-react";
 import { SITE } from "@/content/site";
 import { ROUTES } from "@/content/routes";
