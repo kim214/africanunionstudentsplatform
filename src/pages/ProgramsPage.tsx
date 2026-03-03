@@ -2,7 +2,7 @@ import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Handshake, GraduationCap, PenTool, Scale, Settings, Landmark, Globe, UserPlus, Target, BookOpen, Building, DollarSign, Languages, MapPin, Flag, ArrowRight } from "lucide-react";
+import { Handshake, GraduationCap, PenTool, Scale, Settings, Landmark, Globe, UserPlus, Target, BookOpen, Building, DollarSign, Languages, MapPin, Flag, ArrowRight, BarChart3, Image as ImageIcon, Megaphone, FileCheck, PiggyBank } from "lucide-react";
 import { ROUTES } from "@/content/routes";
 
 import globalAffairsImg from "@/assets/ministry-global-affairs.jpg";
@@ -22,16 +22,25 @@ const useVisible = (threshold = 0.1) => {
 };
 
 const departments = [
-  { icon: Handshake, name: "Partnerships", programs: ["AUSP Partner Connect Summit", "Partnership-Building Bootcamp"] },
-  { icon: GraduationCap, name: "Scholarships", programs: ['"Did You Know?" Scholarship Series', "Virtual Career Accelerator"] },
-  { icon: PenTool, name: "Editorial", programs: ["AUSP Magazine Issue 2", "Writing Skills Webinars"] },
-  { icon: Scale, name: "Legal", programs: ["AUSP Legal Registration Drive", "Code of Conduct Implementation"] },
-  { icon: Settings, name: "Operations", programs: ["Leadership Training Series", "Mentorship Pipeline"] },
-  { icon: Landmark, name: "History", programs: ["African History Awareness Campaign", "Museum Collaboration Program"] },
-  { icon: Globe, name: "Diaspora", programs: ["Diaspora Success Stories", "Diaspora Café"] },
-  { icon: UserPlus, name: "Membership", programs: ["Membership Drive 1.0", "Digital Membership Card Rollout"] },
-  { icon: Target, name: "Agenda 2063 & 2030", programs: ["Young Global Ambassadors Program", "SDGs Training Workshops"] },
-  { icon: BookOpen, name: "ECOSOC", programs: ["AFCFTA Awareness Drive", "Cultural Heritage for Development Campaign"] },
+  { icon: PenTool, name: "Editorial", programs: ["AUSP Magazine Issue 2", "Writing Skills Webinars", "Content strategy development"] },
+  { icon: Landmark, name: "History", programs: ["African History Awareness Campaign", "Museum Collaboration Program", "Heritage preservation initiatives"] },
+  { icon: Languages, name: "Language Depts", programs: ["Swahili for All Campaign", "French Connect Class", "Multilingual skills development"] },
+  { icon: BookOpen, name: "ECOSOCC Unit", programs: ["AFCFTA Awareness Drive", "Cultural Heritage for Development Campaign", "Trade literacy programs"] },
+  { icon: GraduationCap, name: "Scholarship", programs: ['"Did You Know?" Scholarship Series', "Virtual Career Accelerator", "Scholarship database management"] },
+  { icon: ImageIcon, name: "Web & Graphics Dept", programs: ["Digital content creation", "Visual identity development", "Platform design and maintenance"] },
+  { icon: UserPlus, name: "Membership Unit", programs: ["Membership Drive 1.0", "Digital Membership Card Rollout", "Onboarding programs"] },
+  { icon: Megaphone, name: "Marketing & S.M Unit", programs: ["Brand awareness campaigns", "Social media engagement", "Community outreach initiatives"] },
+  { icon: Scale, name: "Legal Dept", programs: ["AUSP Legal Registration Drive", "Code of Conduct Implementation", "Compliance monitoring"] },
+  { icon: DollarSign, name: "Finance Dept", programs: ["Budget 2025 Finalization", "Financial reporting", "Resource allocation"] },
+  { icon: FileCheck, name: "Audit Dept", programs: ["Financial audits", "Governance oversight", "Transparency reporting"] },
+  { icon: BarChart3, name: "M & E Dept", programs: ["Impact assessment", "Program evaluation", "Performance tracking"] },
+  { icon: Settings, name: "Operations Dept", programs: ["Leadership Training Series", "Mentorship Pipeline", "Process optimization"] },
+  { icon: Handshake, name: "Partnerships Dept", programs: ["AUSP Partner Connect Summit", "Partnership-Building Bootcamp", "MOU development and management"] },
+  { icon: PiggyBank, name: "Grants, Fundraising & Budgeting Dept", programs: ["Fundraising Drive", "Grant applications", "Budget planning and oversight"] },
+  { icon: Target, name: "Agenda 2063 Unit", programs: ["Young Global Ambassadors Program", "AUH 2063 Launch", "Agenda 2063 awareness campaigns"] },
+  { icon: Globe, name: "Diaspora Dept", programs: ["Diaspora Success Stories", "Diaspora Café", "Diaspora Forum Planning and Kick-off"] },
+  { icon: MapPin, name: "External Relations & Volunteerism Dept", programs: ["International partnerships", "Volunteer coordination", "Cross-border collaboration"] },
+  { icon: Target, name: "SDGs Unit", programs: ["SDGs Training Workshops", "Sustainable development advocacy", "Youth policy engagement"] },
 ];
 
 const ministries = [
@@ -39,25 +48,31 @@ const ministries = [
     icon: Globe, name: "Ministry of Global Affairs", slug: "global-affairs", image: globalAffairsImg, progress: 70,
     objective: "To strengthen AUSP's connections with the African Diaspora and global partners.",
     programs: ["AUSP Diaspora Establishment Project", "Diaspora Forum Planning and Kick-off"],
-    departments: ["Diaspora Department", "Partnerships Department"],
+    departments: ["Diaspora Dept", "External Relations & Volunteerism Dept", "SDGs Unit"],
   },
   {
-    icon: DollarSign, name: "Ministry of Finance & Governance", slug: "finance-governance", image: financeImg, progress: 65,
+    icon: DollarSign, name: "Ministry of Finance, Governance & Legality", slug: "finance-governance", image: financeImg, progress: 65,
     objective: "To ensure the financial sustainability, accountability, and effective resource management.",
     programs: ["Budget 2025 Finalization", "Fundraising Drive"],
-    departments: ["Legal Department", "Operations Department"],
+    departments: ["Legal Dept", "Finance Dept", "Audit Dept"],
   },
   {
-    icon: Building, name: "Ministry of Projects & Programs", slug: "projects-programs", image: projectsImg, progress: 85,
-    objective: "To oversee the planning, coordination, and successful execution of flagship projects.",
+    icon: Building, name: "Ministry of Programs & Projects Management", slug: "projects-programs", image: projectsImg, progress: 85,
+    objective: "To oversee the planning, coordination, and successful execution of flagship projects and partnerships.",
     programs: ["African Union House (AUH) 2063 Launch", "TEDxAUSP Preparation"],
-    departments: ["Scholarships Department", "Editorial Department", "Membership Department"],
+    departments: ["M & E Dept", "Operations Dept", "Partnerships Dept", "Grants, Fundraising & Budgeting Dept", "Agenda 2063 Unit"],
   },
   {
-    icon: Languages, name: "Ministry of Languages & Cultures", slug: "languages-cultures", image: languagesImg, progress: 50,
+    icon: UserPlus, name: "Ministry of Membership, Admissions & Scholarships", slug: "membership-admissions-scholarships", image: languagesImg, progress: 60,
+    objective: "To grow and nurture AUSP membership, manage admissions, and expand scholarship opportunities for African youth.",
+    programs: ["Membership Drive 1.0", '"Did You Know?" Scholarship Series', "Digital Membership Card Rollout"],
+    departments: ["Scholarship Dept", "Web & Graphics Dept", "Membership Unit", "Marketing & S.M Unit"],
+  },
+  {
+    icon: Languages, name: "Ministry of World Languages & Cultures", slug: "languages-cultures", image: languagesImg, progress: 50,
     objective: "To promote linguistic diversity, cultural awareness, and Pan-African identity.",
     programs: ["Swahili for All Campaign", "French Connect Class"],
-    departments: ["History Department", "Agenda 2063 & 2030 Unit", "ECOSOC Unit"],
+    departments: ["Editorial Dept", "History Dept", "Language Depts", "ECOSOCC Unit"],
   },
 ];
 
@@ -90,7 +105,7 @@ const ProgramsPage = () => {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {departments.map((dept, i) => (
               <div key={dept.name} className={`group bg-card rounded-xl p-5 border border-border hover:border-primary/30 hover:shadow-card transition-all duration-300 hover:-translate-y-1 ${depts.visible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: `${0.07 * i}s` }}>
                 <div className="w-10 h-10 rounded-lg bg-blue-gradient flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">

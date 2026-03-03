@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
-import { Globe, DollarSign, Building, Languages, ArrowLeft, Target, Users, CheckCircle, ChevronRight } from "lucide-react";
+import { Globe, DollarSign, Building, Languages, UserPlus, ArrowLeft, Target, Users, CheckCircle, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import globalAffairsImg from "@/assets/ministry-global-affairs.jpg";
@@ -57,26 +57,31 @@ const ministriesData: Record<string, {
     ],
     departments: [
       {
-        name: "Diaspora Department",
+        name: "Diaspora Dept",
         description: "Coordinates engagement with African students and professionals in the Diaspora, creating channels for knowledge transfer and collaboration.",
         activities: ["Diaspora Success Stories", "Diaspora Café", "Cross-border networking events", "Mentorship matching programs"]
       },
       {
-        name: "Partnerships Department",
-        description: "Identifies and manages strategic partnerships with international organizations, universities, and development agencies.",
-        activities: ["AUSP Partner Connect Summit", "Partnership-Building Bootcamp", "MOU development and management", "Partner engagement tracking"]
+        name: "External Relations & Volunteerism Dept",
+        description: "Manages international partnerships, volunteer coordination, and cross-border collaboration initiatives.",
+        activities: ["International partnership development", "Volunteer coordination", "Cross-border collaboration events", "External engagement tracking"]
+      },
+      {
+        name: "SDGs Unit",
+        description: "Aligns AUSP programs with the UN Sustainable Development Goals and promotes youth engagement in sustainable development.",
+        activities: ["SDGs Training Workshops", "Sustainable development advocacy", "Youth policy engagement", "Agenda 2030 awareness campaigns"]
       }
     ],
     keyStats: [
       { label: "Countries Reached", value: "15+" },
       { label: "Diaspora Members", value: "500+" },
-      { label: "Active Partnerships", value: "20+" },
+      { label: "SDG Workshops", value: "8+" },
       { label: "Programs Planned", value: "4" }
     ]
   },
   "finance-governance": {
     icon: DollarSign,
-    name: "Finance & Governance",
+    name: "Finance, Governance & Legality",
     fullName: "Ministry of Finance, Governance & Legality",
     image: financeImg,
     progress: 65,
@@ -99,31 +104,36 @@ const ministriesData: Record<string, {
     ],
     departments: [
       {
-        name: "Legal Department",
+        name: "Legal Dept",
         description: "Handles all legal matters including organizational registration, compliance, and the implementation of codes of conduct.",
         activities: ["AUSP Legal Registration Drive", "Code of Conduct Implementation", "Legal advisory services", "Compliance monitoring"]
       },
       {
-        name: "Operations Department",
-        description: "Manages internal processes, leadership training, and mentorship programs to ensure organizational efficiency.",
-        activities: ["Leadership Training Series", "Mentorship Pipeline", "Process optimization", "Performance monitoring"]
+        name: "Finance Dept",
+        description: "Manages budgeting, financial reporting, and resource allocation for all AUSP programs and activities.",
+        activities: ["Budget 2025 Finalization", "Financial reporting", "Resource allocation", "Expenditure tracking"]
+      },
+      {
+        name: "Audit Dept",
+        description: "Ensures transparency and accountability through financial audits and governance oversight.",
+        activities: ["Financial audits", "Governance oversight", "Transparency reporting", "Internal control reviews"]
       }
     ],
     keyStats: [
       { label: "Budget Coverage", value: "65%" },
       { label: "Fundraising Target", value: "$50K" },
       { label: "Legal Registrations", value: "5" },
-      { label: "Training Sessions", value: "12" }
+      { label: "Audit Reports", value: "Annual" }
     ]
   },
   "projects-programs": {
     icon: Building,
-    name: "Projects & Programs",
-    fullName: "Ministry of Projects & Programs",
+    name: "Programs & Projects Management",
+    fullName: "Ministry of Programs & Projects Management",
     image: projectsImg,
     progress: 85,
     objective: "To oversee the planning, coordination, and successful execution of AUSP's flagship projects and events, ensuring alignment with the organization's vision and strategic objectives.",
-    description: "The Ministry of Projects & Programs is responsible for AUSP's most ambitious and visible initiatives. From the African Union House 2063 launch to TEDxAUSP preparations, this ministry ensures that flagship projects are executed with professionalism, creativity, and maximum impact. It also coordinates scholarships, editorial content, and knowledge-sharing platforms.",
+    description: "The Ministry of Programs & Projects Management is responsible for AUSP's most ambitious and visible initiatives. From the African Union House 2063 launch to TEDxAUSP preparations, this ministry ensures that flagship projects are executed with professionalism, creativity, and maximum impact. It coordinates monitoring and evaluation, operations, partnerships, grants, and Agenda 2063 alignment.",
     programs: [
       {
         name: "African Union House (AUH) 2063 Launch",
@@ -141,36 +151,102 @@ const ministriesData: Record<string, {
     ],
     departments: [
       {
-        name: "Scholarships Department",
-        description: "Manages scholarship opportunities and career development programs for African students.",
-        activities: ['"Did You Know?" Scholarship Series', "Virtual Career Accelerator", "Scholarship database management", "Career mentorship programs"]
+        name: "M & E Dept",
+        description: "Monitors and evaluates program performance, impact assessment, and ensures continuous improvement.",
+        activities: ["Impact assessment", "Program evaluation", "Performance tracking", "Data-driven reporting"]
       },
       {
-        name: "Editorial Department",
-        description: "Produces AUSP publications, manages content creation, and develops writing skills among members.",
-        activities: ["AUSP Magazine Issue 2", "Writing Skills Webinars", "Content strategy development", "Digital storytelling workshops"]
+        name: "Operations Dept",
+        description: "Manages internal processes, leadership training, and mentorship programs to ensure organizational efficiency.",
+        activities: ["Leadership Training Series", "Mentorship Pipeline", "Process optimization", "Performance monitoring"]
       },
       {
-        name: "Membership Department",
-        description: "Drives membership growth, manages member records, and develops engagement strategies.",
-        activities: ["Membership Drive 1.0", "Digital Membership Card Rollout", "Member engagement tracking", "Onboarding programs"]
+        name: "Partnerships Dept",
+        description: "Identifies and manages strategic partnerships with organizations, universities, and development agencies.",
+        activities: ["AUSP Partner Connect Summit", "Partnership-Building Bootcamp", "MOU development and management", "Partner engagement tracking"]
+      },
+      {
+        name: "Grants, Fundraising & Budgeting Dept",
+        description: "Secures funding through grants and fundraising, and manages project budgets.",
+        activities: ["Fundraising Drive", "Grant applications", "Budget planning and oversight", "Donor relations"]
+      },
+      {
+        name: "Agenda 2063 Unit",
+        description: "Aligns AUSP programs with the African Union's Agenda 2063 vision for continental development.",
+        activities: ["Young Global Ambassadors Program", "AUH 2063 Launch", "Agenda 2063 awareness campaigns", "Youth advocacy training"]
       }
     ],
     keyStats: [
       { label: "Flagship Projects", value: "2" },
-      { label: "Departments", value: "3" },
+      { label: "Departments", value: "5" },
+      { label: "Partnerships", value: "20+" },
+      { label: "Agenda 2063 Programs", value: "4+" }
+    ]
+  },
+  "membership-admissions-scholarships": {
+    icon: UserPlus,
+    name: "Membership, Admissions & Scholarships",
+    fullName: "Ministry of Membership, Admissions & Scholarships",
+    image: languagesImg,
+    progress: 60,
+    objective: "To grow and nurture AUSP membership, manage admissions, and expand scholarship opportunities for African youth and students.",
+    description: "The Ministry of Membership, Admissions & Scholarships drives AUSP's growth and inclusivity. It oversees membership recruitment and engagement, admissions processes, scholarship programs, and digital presence. Through strategic marketing and member-focused initiatives, this ministry ensures that African youth have access to AUSP's opportunities and resources.",
+    programs: [
+      {
+        name: "Membership Drive 1.0",
+        description: "Launch targeted campaigns to grow AUSP membership across African nations and the Diaspora."
+      },
+      {
+        name: '"Did You Know?" Scholarship Series',
+        description: "Showcase scholarship opportunities and career development programs to increase awareness and applications."
+      },
+      {
+        name: "Digital Membership Card Rollout",
+        description: "Implement digital membership cards for streamlined verification and enhanced member experience."
+      }
+    ],
+    expectedContributions: [
+      "Grow AUSP membership across all regions",
+      "Expand scholarship access and awareness for African youth",
+      "Strengthen AUSP's digital presence and brand visibility"
+    ],
+    departments: [
+      {
+        name: "Scholarship Dept",
+        description: "Manages scholarship opportunities and career development programs for African students.",
+        activities: ['"Did You Know?" Scholarship Series', "Virtual Career Accelerator", "Scholarship database management", "Career mentorship programs"]
+      },
+      {
+        name: "Web & Graphics Dept",
+        description: "Develops and maintains AUSP's digital presence, visual identity, and content design.",
+        activities: ["Digital content creation", "Visual identity development", "Platform design and maintenance", "Graphics for campaigns"]
+      },
+      {
+        name: "Membership Unit",
+        description: "Drives membership growth, manages member records, and develops engagement strategies.",
+        activities: ["Membership Drive 1.0", "Digital Membership Card Rollout", "Member engagement tracking", "Onboarding programs"]
+      },
+      {
+        name: "Marketing & S.M Unit",
+        description: "Promotes AUSP brand awareness and engagement through marketing and social media.",
+        activities: ["Brand awareness campaigns", "Social media engagement", "Community outreach initiatives", "Communication strategy"]
+      }
+    ],
+    keyStats: [
+      { label: "Membership Target", value: "10K+" },
       { label: "Scholarships Offered", value: "50+" },
-      { label: "Magazine Reach", value: "5K+" }
+      { label: "Departments", value: "4" },
+      { label: "Digital Reach", value: "50K+" }
     ]
   },
   "languages-cultures": {
     icon: Languages,
-    name: "Languages & Cultures",
+    name: "World Languages & Cultures",
     fullName: "Ministry of World Languages & Cultures",
     image: languagesImg,
     progress: 50,
     objective: "To promote linguistic diversity, cultural awareness, and Pan-African identity among youth and students, fostering unity and effective communication across the continent.",
-    description: "The Ministry of World Languages & Cultures celebrates Africa's rich linguistic and cultural heritage. Through language learning campaigns and cultural exchange programs, this ministry promotes Pan-African identity, cross-cultural understanding, and effective communication skills that enhance youth employability and regional engagement.",
+    description: "The Ministry of World Languages & Cultures celebrates Africa's rich linguistic and cultural heritage. Through language learning campaigns, editorial content, and cultural exchange programs, this ministry promotes Pan-African identity, cross-cultural understanding, and effective communication skills that enhance youth employability and regional engagement.",
     programs: [
       {
         name: "Swahili for All Campaign",
@@ -188,17 +264,22 @@ const ministriesData: Record<string, {
     ],
     departments: [
       {
-        name: "History Department",
+        name: "Editorial Dept",
+        description: "Produces AUSP publications, manages content creation, and develops writing skills among members.",
+        activities: ["AUSP Magazine Issue 2", "Writing Skills Webinars", "Content strategy development", "Digital storytelling workshops"]
+      },
+      {
+        name: "History Dept",
         description: "Preserves and promotes African history and heritage through awareness campaigns and collaborative programs.",
         activities: ["African History Awareness Campaign", "Museum Collaboration Program", "Historical documentation projects", "Heritage preservation initiatives"]
       },
       {
-        name: "Agenda 2063 & 2030 Unit",
-        description: "Aligns AUSP programs with the African Union's Agenda 2063 and the UN's Agenda 2030 sustainable development goals.",
-        activities: ["Young Global Ambassadors Program", "SDGs Training Workshops", "Policy awareness campaigns", "Youth advocacy training"]
+        name: "Language Depts",
+        description: "Delivers language learning programs and promotes multilingualism across the continent.",
+        activities: ["Swahili for All Campaign", "French Connect Class", "Multilingual skills development", "Cultural language exchange"]
       },
       {
-        name: "ECOSOC Unit",
+        name: "ECOSOCC Unit",
         description: "Focuses on economic, social, and cultural development initiatives aligned with continental frameworks.",
         activities: ["AFCFTA Awareness Drive", "Cultural Heritage for Development Campaign", "Trade literacy programs", "Cultural exchange events"]
       }
@@ -206,7 +287,7 @@ const ministriesData: Record<string, {
     keyStats: [
       { label: "Languages Taught", value: "2+" },
       { label: "Cultural Programs", value: "6" },
-      { label: "SDG Workshops", value: "8" },
+      { label: "Departments", value: "4" },
       { label: "Participants Expected", value: "1K+" }
     ]
   }
