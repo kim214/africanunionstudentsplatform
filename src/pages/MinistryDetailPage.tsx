@@ -133,7 +133,7 @@ const ministriesData: Record<string, {
     image: projectsImg,
     progress: 85,
     objective: "To oversee the planning, coordination, and successful execution of AUSP's flagship projects and events, ensuring alignment with the organization's vision and strategic objectives.",
-    description: "The Ministry of Programs & Projects Management is responsible for AUSP's most ambitious and visible initiatives. From the African Union House 2063 launch to TEDxAUSP preparations, this ministry ensures that flagship projects are executed with professionalism, creativity, and maximum impact. It coordinates monitoring and evaluation, operations, partnerships, grants, and Agenda 2063 alignment.",
+    description: "The Ministry of Programs & Projects Management oversees the planning, coordination, and execution of the organization’s most strategic and high-impact initiatives. It ensures that all projects are delivered with professionalism, innovation, and measurable results. Through strong operational oversight, effective monitoring and evaluation, strategic partnerships, resource mobilization, and alignment with long-term development goals, the ministry drives sustainable impact and institutional excellence.",
     programs: [
       {
         name: "African Union House (AUH) 2063 Launch",
@@ -143,6 +143,7 @@ const ministriesData: Record<string, {
         name: "TEDxAUSP Preparation",
         description: "Plan and prepare the TEDxAUSP event to showcase youth ideas, innovations, and solutions addressing societal and economic challenges in Africa."
       }
+      
     ],
     expectedContributions: [
       "Provide a structured and professional framework for implementing high-impact programs",
@@ -158,12 +159,12 @@ const ministriesData: Record<string, {
       {
         name: "Operations Dept",
         description: "Manages internal processes, leadership training, and mentorship programs to ensure organizational efficiency.",
-        activities: ["Leadership Training Series", "Mentorship Pipeline", "Process optimization", "Performance monitoring"]
+        activities: ["Leadership Training Series", "Mentorship Pipeline"]
       },
       {
         name: "Partnerships Dept",
         description: "Identifies and manages strategic partnerships with organizations, universities, and development agencies.",
-        activities: ["AUSP Partner Connect Summit", "Partnership-Building Bootcamp", "MOU development and management", "Partner engagement tracking"]
+        activities: ["AUSP Partner Connect Summit", "Partnership-Building Bootcamp","Partner engagement tracking"]
       },
       {
         name: "Grants, Fundraising & Budgeting Dept",
@@ -171,9 +172,9 @@ const ministriesData: Record<string, {
         activities: ["Fundraising Drive", "Grant applications", "Budget planning and oversight", "Donor relations"]
       },
       {
-        name: "Agenda 2063 Unit",
+        name: "Agenda 2063 & 2030 Unit",
         description: "Aligns AUSP programs with the African Union's Agenda 2063 vision for continental development.",
-        activities: ["Young Global Ambassadors Program", "AUH 2063 Launch", "Agenda 2063 awareness campaigns", "Youth advocacy training"]
+        activities: ["Young Global Ambassadors Program", "SDGs Training Workshops", "Agenda 2063 awareness campaigns",]
       }
     ],
     keyStats: [

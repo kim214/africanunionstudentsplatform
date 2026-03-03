@@ -27,7 +27,8 @@ const FooterSection = () => (
           <h4 className="font-display text-lg font-bold mb-6">Quick Links</h4>
           <div className="flex flex-col gap-2">
             {SITE.nav
-              .flatMap((item) => ("children" in item ? item.children : [item]))
+              .map((item) => ("children" in item ? item.children : [item]))
+              .flat()
               .map((link) => (
               <Link
                 key={link.to}

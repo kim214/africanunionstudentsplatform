@@ -18,7 +18,7 @@ const useVisible = (threshold = 0.15) => {
 const phases = [
   {
     icon: Rocket, period: "Oct – Dec 2025", title: "Implementation Phase",
-    items: ["Recruitment, partnerships, proposal submissions", "General Assembly, departmental goals", "Website finalization, Kenyan project, organizational account setup"],
+    items: ["Recruitment, partnerships, proposal submissions", "General Assembly, departmental goals", "Website finalization, organizational account setup"],
   },
   {
     icon: TrendingUp, period: "Jan – Mar 2026", title: "Growth Phase I",

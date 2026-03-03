@@ -17,7 +17,7 @@ const WhereWeWorkPage = () => (
           {[
             { icon: Globe, title: "Pan-African", text: "Serving 55+ African nations & Diaspora" },
             { icon: Users, title: "Reach", text: "Continent-wide with regional directors" },
-            { icon: MapPin, title: "Coordination", text: "Nairobi, Kenya" },
+            { icon: MapPin, title: "Coordination", text: "Johannesburg, South Africa" },
           ].map((item) => (
             <div
               key={item.title}
