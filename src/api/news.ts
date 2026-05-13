@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/lib/supabaseClient";
+import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
 
 export interface NewsArticle {
   id: string;
@@ -19,6 +19,8 @@ export const NEWS_QUERY_KEYS = {
 export function useNewsList() {
   return useQuery({
     queryKey: NEWS_QUERY_KEYS.all,
+    enabled: isSupabaseConfigured,
+    initialData: [],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("news_articles")
@@ -35,7 +37,8 @@ export function useNewsList() {
 export function useNewsArticle(slug: string | undefined) {
   return useQuery({
     queryKey: slug ? NEWS_QUERY_KEYS.bySlug(slug) : ["news", "detail"],
-    enabled: Boolean(slug),
+    enabled: Boolean(slug) && isSupabaseConfigured,
+    initialData: null,
     queryFn: async () => {
       const { data, error } = await supabase
         .from("news_articles")

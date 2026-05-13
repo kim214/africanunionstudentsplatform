@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/lib/supabaseClient";
+import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
 
 export interface EventItem {
   id: string;
@@ -17,6 +17,8 @@ export const EVENTS_QUERY_KEYS = {
 export function useEventsList() {
   return useQuery({
     queryKey: EVENTS_QUERY_KEYS.all,
+    enabled: isSupabaseConfigured,
+    initialData: [],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("events")
