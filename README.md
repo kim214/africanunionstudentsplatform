@@ -1,26 +1,44 @@
-# Welcome to your Lovable project
+🌍 AFRICAN UNION STUDENTS PLATFORM (AUSP)
 
-## Project info
+A modern digital platform inspired by the vision of the African Union Students Platform, designed to educate, connect, and empower African students across the continent and the diaspora. This project promotes Pan-African collaboration, leadership, innovation, and youth-driven transformation aligned with Africa’s Agenda 2063.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Built to foster a united African student ecosystem, the platform provides opportunities for networking, leadership development, policy engagement, innovation exchange, conferences, and community-driven initiatives that amplify the voice and potential of African youth.
 
-## How can I edit this code?
+✨ Core Features
+🌐 Pan-African student networking
+🎓 Leadership and mentorship programs
+📢 Conferences, forums, and youth engagement events
+💡 Innovation and entrepreneurship collaboration
+🏛️ Policy discussions aligned with Agenda 2063
+🤝 Community building across Africa and the diaspora
+📱 Responsive and modern user interface
+🔒 Secure authentication and user management
+🚀 Vision
 
-There are several ways of editing your application.
+To build a connected generation of African students and young leaders capable of driving sustainable development, innovation, unity, and transformation across Africa.
 
-**Use Lovable**
+🎯 Mission
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+To educate, connect, and empower African students by leveraging technology, collaboration, and strategic engagement to create opportunities for growth, leadership, and continental impact.
 
-Changes made via Lovable will be committed automatically to this repo.
 
-**Use your preferred IDE**
+🌍 Impact
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+This project aims to bridge the gap between African students in Africa and abroad by creating a collaborative digital ecosystem where ideas, opportunities, and solutions can thrive for the advancement of the continent.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+📌 Motto
 
-Follow these steps:
+Educate. Connect. Empower.
+
+
+🛠️ Technologies Used
+
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
+
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
@@ -36,63 +54,6 @@ npm i
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+[Official AUSP Platform](https://ausp.africa/)
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## Environment variables 🔐
-
-This project uses [Vite](https://vitejs.dev/) and reads configuration from
-`import.meta.env`. For any secrets or API keys you should create a local
-`.env` file at the root of the repository. The repository includes a
-`.env.example` with the required keys – copy it to `.env` and fill in the
-values.
-
-```bash
-cp .env.example .env        # macOS / Linux
-copy .env.example .env      # Windows PowerShell
-```
-
-For Supabase you must provide:
-
-```env
-VITE_SUPABASE_URL=https://your-project-ref.supabase.co
-VITE_SUPABASE_ANON_KEY=your-anon-key
-```
-
-The real `.env` file is ignored by Git, so you can keep your credentials
-private. Other environment files like `.env.local` or `.env.production`
-are also supported by Vite if you need different values per environment.
-
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
