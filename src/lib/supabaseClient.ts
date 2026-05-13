@@ -11,21 +11,37 @@ import { createClient } from "@supabase/supabase-js";
 // resilient in different environments.
 const supabaseUrl =
   (import.meta.env.VITE_SUPABASE_URL as string) ||
-  process.env.VITE_SUPABASE_URL ||
+  (typeof process !== "undefined" ? process.env.VITE_SUPABASE_URL : undefined) ||
   "";
 const supabaseAnonKey =
   (import.meta.env.VITE_SUPABASE_ANON_KEY as string) ||
-  process.env.VITE_SUPABASE_ANON_KEY ||
+  (typeof process !== "undefined" ? process.env.VITE_SUPABASE_ANON_KEY : undefined) ||
   "";
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  // the thrown error bubbles up during startup; in development the message
-  // will appear in the browser console / terminal so it's easy to spot.
+const missing = !supabaseUrl || !supabaseAnonKey;
+
+if (missing && import.meta.env.PROD) {
   throw new Error(
     "Missing Supabase configuration. " +
-      "You must set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in a local .env (or env vars) and restart the dev server."
+      "Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY for production builds."
   );
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+if (missing && import.meta.env.DEV) {
+  console.warn(
+    "[AUSP] VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY are not set. " +
+      "Add a `.env` file in the project root and restart `npm run dev` so news and events load from Supabase."
+  );
+}
+
+// Invalid placeholders only used in dev when env is missing; API calls fail gracefully via React Query.
+const urlForClient =
+  supabaseUrl || (import.meta.env.DEV ? "https://placeholder.invalid" : "");
+const keyForClient =
+  supabaseAnonKey ||
+  (import.meta.env.DEV
+    ? "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.development-placeholder"
+    : "");
+
+export const supabase = createClient(urlForClient, keyForClient);
 
