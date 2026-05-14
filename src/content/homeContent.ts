@@ -10,22 +10,22 @@ import {
   Handshake,
 } from "lucide-react";
 
-import campaign1 from "@/assets/campaign-1.webp";
+import campaign1 from "@/assets/campaign-1.jpeg";
 import campaign2 from "@/assets/campaign-2.png";
 import campaign3 from "@/assets/campaign-3.webp";
-import campaign4 from "@/assets/campaign-4.jpg";
-import campaign5 from "@/assets/campaign-5.jpg";
-import campaign6 from "@/assets/campaign-6.jpg";
+import campaign4 from "@/assets/campaign-4.jpeg";
+import campaign5 from "@/assets/campaign-5.jpeg";
+import campaign6 from "@/assets/campaign-6.webp";
 
-import ministryGlobalAffairs from "@/assets/policy.png";
-import ministryFinance from "@/assets/ministry-finance.jpg";
-import ministryProjects from "@/assets/youthengagement.png";
+import policy from "@/assets/policy.png";
+import movementbuilding from "@/assets/movement.webp";
+import youth from "@/assets/youthengagement.png";
 import { ROUTES } from "@/content/routes";
 
 export const homePillars = [
   {
     icon: BookOpen,
-    image: ministryGlobalAffairs,
+    image: policy,
     title: "Policy & Advocacy",
     description:
       "AUSP facilitates the collective participation and engagement of young people in official, formal and informal avenues of policy design, implementation, monitoring, and review at continental and global levels.",
@@ -33,7 +33,7 @@ export const homePillars = [
   },
   {
     icon: Users,
-    image: ministryFinance,
+    image: movementbuilding,
     title: "Movement Building",
     description:
       "AUSP consolidates student voices through grassroots organisation linkages to build a strong youth movement on the continent through national consortium platforms across 55+ nations.",
@@ -41,7 +41,7 @@ export const homePillars = [
   },
   {
     icon: Lightbulb,
-    image: ministryProjects,
+    image: youth,
     title: "Youth Engagement",
     description:
       "Impactful youth engagement recognises and seeks to change the power structures that prevent young people from being considered as key stakeholders and drivers of their own needs and priorities.",

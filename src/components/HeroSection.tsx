@@ -13,9 +13,9 @@ import {
   BadgeCheck,
 } from "lucide-react";
 
-import leadershipBg from "@/assets/hero-leadership.jpg";
+import leadershipBg from "@/assets/hero-leadership.jpeg";
 import campaign2 from "@/assets/campaign-2.png";
-import unityBg from "@/assets/hero-unity.jpg";
+import unityBg from "@/assets/hero-unity.webp";
 import { ROUTES } from "@/content/routes";
 
 // ─────────────────────────────────────────────────────────────

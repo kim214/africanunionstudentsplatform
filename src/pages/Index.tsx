@@ -5,7 +5,7 @@ import leaderPreston from "@/assets/leader-preston.png";
 import leaderHajara from "@/assets/leader-hajara.png";
 import leaderNeema from "@/assets/leader-neema.png";
 import missionHero from "@/assets/mission-hero.jpg";
-import conferenceBg from "@/assets/conference-nairobi.jpg";
+import conferenceBg from "@/assets/campaign-3.webp";
 import { useEffect, useRef, useState } from "react";
 import {
   BookOpen, Users, Lightbulb, Award, Crown, Rocket, GraduationCap, Heart,
