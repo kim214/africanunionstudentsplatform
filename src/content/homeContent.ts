@@ -10,9 +10,9 @@ import {
   Handshake,
 } from "lucide-react";
 
-import campaign1 from "@/assets/campaign-1.jpg";
+import campaign1 from "@/assets/campaign-1.webp";
 import campaign2 from "@/assets/campaign-2.png";
-import campaign3 from "@/assets/campaign-3.jpg";
+import campaign3 from "@/assets/campaign-3.webp";
 import campaign4 from "@/assets/campaign-4.jpg";
 import campaign5 from "@/assets/campaign-5.jpg";
 import campaign6 from "@/assets/campaign-6.jpg";
