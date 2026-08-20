@@ -89,9 +89,7 @@ const FooterSection = () => (
             <Link to={ROUTES.join} className="inline-block px-6 py-3 rounded-lg bg-gold-gradient text-foreground font-semibold text-sm shadow-gold hover:opacity-90 transition-opacity text-center">
               Join AUSP Today
             </Link>
-            <Link to={ROUTES.donate} className="inline-block px-6 py-3 rounded-lg border border-primary-foreground/20 text-primary-foreground font-semibold text-sm hover:bg-primary-foreground/10 transition-colors text-center">
-              Donate Now
-            </Link>
+            
           </div>
         </div>
       </div>

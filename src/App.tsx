@@ -16,7 +16,6 @@ import NewsPage from "./pages/NewsPage";
 import NewsDetailPage from "./pages/NewsDetailPage";
 import ResourcesPage from "./pages/ResourcesPage";
 import WhereWeWorkPage from "./pages/WhereWeWorkPage";
-import DonatePage from "./pages/DonatePage";
 import NotFound from "./pages/NotFound";
 import { ROUTES } from "@/content/routes";
 
@@ -43,7 +42,7 @@ const App = () => (
           <Route path={ROUTES.resources} element={<ResourcesPage />} />
           <Route path={ROUTES.contact} element={<ContactPage />} />
           <Route path={ROUTES.join} element={<ContactPage />} />
-          <Route path={ROUTES.donate} element={<DonatePage />} />
+
 
           {/* Backwards-compatible paths */}
           <Route path="/about" element={<Navigate to={ROUTES.whoWeAre.about} replace />} />

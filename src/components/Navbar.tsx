@@ -169,17 +169,7 @@ const Navbar = () => {
             >
               Join
             </Link>
-            <Link
-              to={ROUTES.donate}
-              className={cn(
-                "px-4 py-2 rounded-lg text-sm font-semibold border transition-colors",
-                showTransparent
-                  ? "border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
-                  : "border-border text-foreground hover:bg-accent",
-              )}
-            >
-              Donate
-            </Link>
+            
           </div>
 
           {/* Mobile */}
@@ -258,12 +248,7 @@ const Navbar = () => {
                     >
                       Join
                     </Link>
-                    <Link
-                      to={ROUTES.donate}
-                      className="px-5 py-3 rounded-lg border border-border text-foreground font-semibold text-center hover:bg-accent transition-colors"
-                    >
-                      Donate
-                    </Link>
+                    
                   </div>
                 </div>
               </SheetContent>
