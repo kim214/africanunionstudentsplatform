@@ -116,30 +116,6 @@ export const homeTestimonials = [
   },
 ] as const;
 
-export const homeUpcomingEvents = [
-  {
-    date: { day: "15", month: "Oct" },
-    title: "International Pan-African Youth Conference 2026",
-    description:
-      "Join thousands of young African leaders, innovators, and changemakers for the most anticipated Pan-African youth gathering of the year in Nairobi, Kenya.",
-    location: "Nairobi, Kenya",
-  },
-  {
-    date: { day: "20", month: "Jun" },
-    title: "AUSP Leadership Summit 2026",
-    description:
-      "A continental summit bringing together AUSP chapters from across 55+ nations to discuss strategy, share best practices, and plan for the future.",
-    location: "Addis Ababa, Ethiopia",
-  },
-  {
-    date: { day: "05", month: "Mar" },
-    title: "Youth Innovation Challenge 2026",
-    description:
-      "An innovation challenge inviting young Africans to develop solutions addressing Africa's most pressing challenges through technology and creativity.",
-    location: "Virtual",
-  },
-] as const;
-
 export const homeNewsItems = [
   {
     image: campaign1,

@@ -12,7 +12,6 @@ export const ROUTES = {
   whereWeWork: "/where-we-work",
   events: "/events",
   news: "/news",
-  resources: "/resources",
   contact: "/contact",
   join: "/join",
   donate: "/donate",

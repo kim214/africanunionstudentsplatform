@@ -14,7 +14,6 @@ import MinistryDetailPage from "./pages/MinistryDetailPage";
 import EventsPage from "./pages/EventsPage";
 import NewsPage from "./pages/NewsPage";
 import NewsDetailPage from "./pages/NewsDetailPage";
-import ResourcesPage from "./pages/ResourcesPage";
 import WhereWeWorkPage from "./pages/WhereWeWorkPage";
 import NotFound from "./pages/NotFound";
 import { ROUTES } from "@/content/routes";
@@ -39,7 +38,6 @@ const App = () => (
           <Route path={ROUTES.events} element={<EventsPage />} />
           <Route path={ROUTES.news} element={<NewsPage />} />
           <Route path="/news/:slug" element={<NewsDetailPage />} />
-          <Route path={ROUTES.resources} element={<ResourcesPage />} />
           <Route path={ROUTES.contact} element={<ContactPage />} />
           <Route path={ROUTES.join} element={<ContactPage />} />
 
@@ -50,6 +48,7 @@ const App = () => (
           <Route path="/focus-areas" element={<Navigate to={ROUTES.whatWeDo.focusAreas} replace />} />
           <Route path="/programs" element={<Navigate to={ROUTES.whatWeDo.programs} replace />} />
           <Route path="/timeline" element={<Navigate to={ROUTES.whoWeAre.timeline} replace />} />
+          <Route path="/resources" element={<Navigate to={ROUTES.home} replace />} />
           <Route path="/ministry/:slug" element={<MinistryDetailPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

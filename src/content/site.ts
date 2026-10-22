@@ -33,7 +33,6 @@ export const SITE = {
     { label: "Where We Work", to: ROUTES.whereWeWork },
     { label: "Events", to: ROUTES.events },
     { label: "News", to: ROUTES.news },
-    { label: "Resources", to: ROUTES.resources },
     { label: "Contact", to: ROUTES.contact },
   ],
 } as const;

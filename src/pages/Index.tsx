@@ -10,13 +10,12 @@ import { useEffect, useRef, useState } from "react";
 import {
   BookOpen, Users, Lightbulb, Award, Crown, Rocket, GraduationCap, Heart,
   ArrowRight, Globe, Star, Target,
-  MapPin, Calendar, Quote, ChevronLeft, ChevronRight
+  Quote, ChevronLeft, ChevronRight
 } from "lucide-react";
 import {
   homeCampaigns,
   homePillars,
   homeTestimonials,
-  homeUpcomingEvents,
   homeValues,
 } from "@/content/homeContent";
 import { ROUTES } from "@/content/routes";
@@ -48,7 +47,6 @@ const Index = () => {
   const valuesSection = useVisible();
   const campaignSection = useVisible();
   const joinSection = useVisible();
-  const eventsSection = useVisible();
   const missionSection = useVisible();
   const testimonialSection = useVisible();
   const newsSection = useVisible();
@@ -245,40 +243,6 @@ const Index = () => {
             <Link to={ROUTES.whatWeDo.programs} className="px-8 py-4 rounded-xl border-2 border-primary-foreground/30 text-primary-foreground font-semibold text-lg hover:bg-primary-foreground/10 transition-all hover:scale-105">
               Explore Programs
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== UPCOMING EVENTS (like AYC) ===== */}
-      <section className="py-24 bg-background" ref={eventsSection.ref}>
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className={`font-display text-3xl md:text-5xl font-bold text-foreground mb-4 ${eventsSection.visible ? "animate-fade-in-up" : "opacity-0"}`}>
-              Upcoming <span className="text-gradient-gold">Events</span>
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {homeUpcomingEvents.map((ev, i) => (
-              <div
-                key={ev.title}
-                className={`group bg-card rounded-2xl shadow-card border border-border hover:border-primary/30 overflow-hidden transition-all duration-300 hover:-translate-y-1 ${eventsSection.visible ? "animate-fade-in-up" : "opacity-0"}`}
-                style={{ animationDelay: `${0.12 * i}s` }}
-              >
-                <div className="flex">
-                  <div className="w-20 shrink-0 bg-blue-gradient flex flex-col items-center justify-center text-primary-foreground p-4">
-                    <span className="text-2xl font-bold font-display">{ev.date.day}</span>
-                    <span className="text-xs uppercase tracking-wider">{ev.date.month}</span>
-                  </div>
-                  <div className="p-5 flex-1">
-                    <h3 className="font-display text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors leading-tight">{ev.title}</h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed mb-3">{ev.description}</p>
-                    <span className="inline-flex items-center gap-1 text-xs text-primary font-medium">
-                      <MapPin className="w-3 h-3" /> {ev.location}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
