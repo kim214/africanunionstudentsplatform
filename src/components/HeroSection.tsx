@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, CalendarDays, Globe2, MapPin, Sparkles, Users } from "lucide-react";
 import summitPoster from "@/assets/alf-summit-2026.jpg";
-import { ROUTES } from "@/content/routes";
 
 const SUMMIT_URL = "https://uniglobeaccess.com/africa-leaders-founders";
 const SUMMIT_START = new Date("2026-11-17T08:00:00+03:00").getTime();
@@ -156,10 +154,12 @@ const EventSpotlight = () => (
           </div>
 
           <h1 className="font-display text-4xl md:text-5xl xl:text-[3.4rem] font-bold leading-[1.05] mb-4">
-            Africa Leaders <span className="text-primary-foreground/60">&</span> Founders
-            <span className="block text-gradient-gold mt-1">
-              Bootcamp & <span className="whitespace-nowrap">Summit 2.0</span>
-            </span>
+            <a href={SUMMIT_URL} target="_blank" rel="noreferrer" className="hover:opacity-90 transition-opacity">
+              Africa Leaders <span className="text-primary-foreground/60">&</span> Founders
+              <span className="block text-gradient-gold mt-1">
+                Bootcamp & <span className="whitespace-nowrap">Summit 2.0</span>
+              </span>
+            </a>
           </h1>
 
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-5 text-sm md:text-base font-semibold tracking-wide">
@@ -200,13 +200,26 @@ const EventSpotlight = () => (
               <span className="relative">Register Now</span>
               <ArrowUpRight className="relative w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
-            <Link
-              to={ROUTES.whoWeAre.about}
+            <a
+              href={`${SUMMIT_URL}#schedule`}
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-primary-foreground/25 bg-primary-foreground/5 backdrop-blur-md text-primary-foreground font-semibold hover:bg-primary-foreground/10 hover:border-primary-foreground/40 transition-all"
             >
-              About AUSP
-            </Link>
+              <CalendarDays className="w-5 h-5 text-secondary" />
+              View Schedule
+            </a>
           </div>
+
+          <a
+            href={SUMMIT_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 mt-5 text-sm text-primary-foreground/60 hover:text-secondary transition-colors"
+          >
+            Full programme, speakers and registration on uniglobeaccess.com
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
         </div>
       </div>
 
