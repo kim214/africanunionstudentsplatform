@@ -16,6 +16,7 @@ import NewsPage from "./pages/NewsPage";
 import NewsDetailPage from "./pages/NewsDetailPage";
 import WhereWeWorkPage from "./pages/WhereWeWorkPage";
 import NotFound from "./pages/NotFound";
+import PageLoader from "@/components/PageLoader";
 import { ROUTES } from "@/content/routes";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <PageLoader />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
