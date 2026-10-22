@@ -1,0 +1,104 @@
+/* Split-flap digit card: the top leaf folds down to reveal the next digit */
+.flip-card {
+  --flip-bg: #e0e0e0;
+  --flip-fg: #333;
+  --flip-line: #d2d2d2;
+  --flip-radius: 12px;
+  position: relative;
+  width: var(--flip-w, 2.75rem);
+  height: var(--flip-h, 3.75rem);
+  font-size: var(--flip-size, 2.6rem);
+  font-weight: 700;
+  line-height: 1;
+  border-radius: var(--flip-radius);
+  perspective: 600px;
+  box-shadow:
+    6px 6px 14px rgba(0, 0, 0, 0.35),
+    -2px -2px 8px rgba(255, 255, 255, 0.08);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Divider across the middle of the card */
+.flip-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  border-bottom: 1px solid var(--flip-line);
+  transform: translateY(-1px);
+  z-index: 20;
+}
+
+.flip-half {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  background: var(--flip-bg);
+  color: var(--flip-fg);
+  backface-visibility: hidden;
+  text-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.05),
+    0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* The digit glyph spans the full card height; each half shows its part of it */
+.flip-half span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flip-top {
+  top: 0;
+  border-radius: var(--flip-radius) var(--flip-radius) 0 0;
+}
+
+.flip-top span {
+  top: 0;
+}
+
+.flip-bottom {
+  bottom: 0;
+  border-radius: 0 0 var(--flip-radius) var(--flip-radius);
+}
+
+.flip-bottom span {
+  bottom: 0;
+}
+
+.flip-leaf-top {
+  z-index: 10;
+  transform-origin: bottom center;
+  animation: flip-top-down 0.3s ease-in forwards;
+}
+
+.flip-leaf-bottom {
+  z-index: 10;
+  transform-origin: top center;
+  transform: rotateX(90deg);
+  animation: flip-bottom-down 0.3s ease-out 0.3s forwards;
+}
+
+@keyframes flip-top-down {
+  from { transform: rotateX(0deg); }
+  to { transform: rotateX(-90deg); }
+}
+
+@keyframes flip-bottom-down {
+  from { transform: rotateX(90deg); }
+  to { transform: rotateX(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-leaf-top,
+  .flip-leaf-bottom {
+    display: none;
+  }
+}

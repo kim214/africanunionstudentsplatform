@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight, CalendarDays, Globe2, MapPin, Sparkles, Users } from "lucide-react";
 import summitPoster from "@/assets/alf-summit-2026.jpg";
+import FlipDigit from "@/components/FlipDigit";
 
 const SUMMIT_URL = "https://uniglobeaccess.com/africa-leaders-founders";
 const SUMMIT_START = new Date("2026-11-17T08:00:00+03:00").getTime();
@@ -56,19 +57,24 @@ const Countdown = () => {
       <p className="text-xs uppercase tracking-[0.2em] text-primary-foreground/50 font-semibold mb-3">
         Summit starts in
       </p>
-      <div className="grid grid-cols-4 gap-2 sm:gap-3 max-w-md">
+      <div
+        className="flex flex-wrap gap-x-3 gap-y-4 sm:gap-x-5 [--flip-w:2.1rem] [--flip-h:2.9rem] [--flip-size:2rem] sm:[--flip-w:2.75rem] sm:[--flip-h:3.75rem] sm:[--flip-size:2.6rem]"
+        role="timer"
+        aria-label={parts.map((p) => `${p.value} ${p.label}`).join(", ")}
+      >
         {parts.map((p) => (
-          <div
-            key={p.label}
-            className="relative rounded-xl bg-primary-foreground/[0.06] border border-primary-foreground/10 backdrop-blur-md py-3 text-center overflow-hidden"
-          >
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-secondary/60 to-transparent" />
-            <div className="font-display text-2xl sm:text-3xl font-bold text-primary-foreground tabular-nums">
-              {String(p.value).padStart(2, "0")}
+          <div key={p.label} className="flex flex-col items-center gap-2">
+            <div className="flex gap-1 sm:gap-1.5">
+              {String(p.value)
+                .padStart(2, "0")
+                .split("")
+                .map((d, i, all) => (
+                  <FlipDigit key={all.length - i} digit={d} />
+                ))}
             </div>
-            <div className="text-[10px] sm:text-xs uppercase tracking-wider text-primary-foreground/50 mt-0.5">
+            <span className="text-[10px] sm:text-xs uppercase tracking-[0.18em] text-primary-foreground/60 font-semibold">
               {p.label}
-            </div>
+            </span>
           </div>
         ))}
       </div>
